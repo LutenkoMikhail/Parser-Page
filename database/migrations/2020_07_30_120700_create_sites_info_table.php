@@ -15,7 +15,7 @@ class CreateSitesInfoTable extends Migration
     {
         Schema::create('sites_info', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('date_load');
+            $table->dateTime('date_load');
             $table->longText('domain_name');
             $table->longText('page_url');
             $table->float('price')->unsigned();

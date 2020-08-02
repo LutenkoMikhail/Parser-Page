@@ -19,10 +19,10 @@
 Выполнить команду : 
 
 composer update;
-npm install (при необходимости);
 php artisan migrate;
 php artisan storage:link(при необходимости);
 php artisan optimize:clear(при необходимости);
+npm install (при необходимости);
 Переименовать файл .env.example в файл .env и настроть подключение к базе данных и пр;
 
 Стартовая страница :

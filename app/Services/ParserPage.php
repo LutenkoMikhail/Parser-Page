@@ -19,7 +19,7 @@ class ParserPage
     }
 
 
-    public function retrievingDataPage(): array
+    public function retrievingDataPage()
     {
         $items = [];
 
@@ -38,12 +38,12 @@ class ParserPage
             if (count($priseLoading) === 1) {
                 $item['price_promotional'] = $price_promotional;
                 $item['price_discount_percentage'] = $price_discount_percentage;
-                $item['price'] = $priseLoading[0];
+                $item['price'] = str_replace(',','',$priseLoading[0]);
             }
             if (count($priseLoading) === 3) {
-                $item['price_promotional'] = $priseLoading[0];
+                $item['price_promotional'] = str_replace(',','',$priseLoading[2]);
                 $item['price_discount_percentage'] = $priseLoading[1];
-                $item['price'] = $priseLoading[2];
+                $item['price'] = str_replace(',','',$priseLoading[0]);
             }
             $items[] = $item;
         }

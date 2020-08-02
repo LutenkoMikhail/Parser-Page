@@ -1,20 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (Session::has('success'))
-        <div class="alert alert-success">
-            <h3>{{ Session::get('success') }}</h3>
-        </div>
-    @endif
+    <h3 class="text-center">   {{ $message}} </h3>
     <div class="content">
         <div class="title m-b-md">
             PARSER
         </div>
 
         <div class="links">
-            <a href="{{route('load')}}">Load page</a>
-{{--            <a href="{{route('parsing')}}">Parsing page</a>--}}
-            <a href="https://laravel-news.com">View perort</a>
+            <a href="{{route('report')}}">View report</a>
         </div>
     </div>
 @endsection

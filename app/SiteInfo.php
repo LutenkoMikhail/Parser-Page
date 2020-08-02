@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Site extends Model
+class SiteInfo extends Model
 {
     use Notifiable;
 
@@ -18,6 +18,7 @@ class Site extends Model
         'id','date_load','domain_name','page_url','price','price_promotional','price_discount_percentage',
         'product_name','product_description'
     ];
+    protected $table = 'sites_info';
 
 //    /**
 //     * The attributes that should be hidden for arrays.
