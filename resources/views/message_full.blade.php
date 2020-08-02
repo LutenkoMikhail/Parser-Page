@@ -8,12 +8,10 @@
                 <a href="{{ url()->previous() }}"
                    class="btn btn-sm btn btn-success">{{ __('Back') }}</a>
                 @if($loadingPage!==false)
-                    {{session(['loadingPage' => $loadingPage])}}
                     <a href="{{ route('parsing') }}"
                        class="btn btn-sm btn-btn btn-warning">{{ __('Parsing') }}</a>
                 @endif
             </div>
         </div>
-    </div>
 @endsection
 

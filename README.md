@@ -30,5 +30,7 @@ public\index.php
 
 Использованы :
 Laravel
+php-simple-html-dom-parser
 
-Дамп базы данный base.sql;
+Дамп базы данный logger.sql;
+

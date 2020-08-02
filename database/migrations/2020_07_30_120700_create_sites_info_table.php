@@ -20,9 +20,8 @@ class CreateSitesInfoTable extends Migration
             $table->longText('page_url');
             $table->float('price')->unsigned();
             $table->float('price_promotional')->unsigned()->nullable();
-            $table->boolean('price_discount_percentage')->default(false);
+            $table->float('price_discount_percentage')->unsigned()->nullable();
             $table->longText('product_name');
-            $table->longText('product_description');
             $table->timestamps();
         });
     }

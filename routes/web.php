@@ -14,3 +14,4 @@
 
 Route::get('/', 'ParserController@index')->name('index');
 Route::get('/load', 'ParserController@loadingPage')->name('load');
+Route::get('/parsing', 'ParserController@parsingPage')->name('parsing');

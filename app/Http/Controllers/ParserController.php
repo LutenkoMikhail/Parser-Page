@@ -6,11 +6,12 @@ use App\Services\LoadPage;
 use App\Services\ParserPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\View;
 
 
 class ParserController extends Controller
 {
-    public $loadPage;
+    public $loaderPage;
     public $parserPage;
     public $domainName;
     public $pageLoadUrl;
@@ -21,10 +22,9 @@ class ParserController extends Controller
     public function __construct()
     {
         $this->pageLoadUrl = Config::get('constants.page_url.page_load');
-        $this->domainName = parse_url($this->pageLoadUrl , PHP_URL_HOST);
+        $this->domainName = parse_url($this->pageLoadUrl, PHP_URL_HOST);
 
-        $this->loadPage = new LoadPage($this->pageLoadUrl);
-        $this->parserPage = new ParserPage();
+
     }
 
     public function index()
@@ -34,12 +34,27 @@ class ParserController extends Controller
 
     public function loadingPage()
     {
-        $message = 'Page : '.$this->pageLoadUrl .' loaded !';
-        $resultPage = $this->loadPage->loadingPage();
-        if ($resultPage === false) {
-            $message = 'The page : '.$this->pageLoadUrl .' is not loaded!';
+        $this->loaderPage = new LoadPage($this->pageLoadUrl);
+
+        $message = 'Page : ' . $this->pageLoadUrl . ' loaded !';
+        $loadingPage = $this->loaderPage->loadingPage();
+        if ($loadingPage === false) {
+            $message = 'The page : ' . $this->pageLoadUrl . ' is not loaded!';
         }
-        return view('load', ['message' => $message]);
+
+        return view('load', [
+            'message' => $message,
+            'loadingPage' => $loadingPage
+        ]);
+    }
+
+    public function parsingPage(Request $request)
+    {
+        $this->parserPage = new ParserPage($request->session()->get('loadingPage'));
+        $resultArray = $this->parserPage->retrievingDataPage();
+        $success = 'Data retrieved from page : ' . $this->pageLoadUrl . '!';
+        return redirect('/')->with('success', $success);
+
     }
 }
 
